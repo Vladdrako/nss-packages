@@ -260,15 +260,13 @@
  		return -EFAULT;
 --- a/netlink/nss_nl.c
 +++ b/netlink/nss_nl.c
-@@ -475,7 +475,11 @@ struct nss_nlcmn *nss_nl_get_msg(struct
+@@ -475,7 +475,7 @@ struct nss_nlcmn *nss_nl_get_msg(struct genl_family *family, struct genl_info *i
  	/*
  	 * validate the common message header version & magic
  	 */
-+#if (LINUX_VERSION_CODE < KERNEL_VERSION(6, 6, 0))
- 	cm = info->userhdr;
-+#else
+-	cm = info->userhdr;
 +	cm = genl_info_userhdr(info);
-+#endif
  	if (nss_nlcmn_chk_ver(cm, family->version) == false) {
  		nss_nl_error("%d, %s: version mismatch (%d)\n", pid, family->name, cm->version);
  		return NULL;
+ 
