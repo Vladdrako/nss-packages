@@ -616,4 +616,3 @@
 -#if !defined(NSS_HAL_IPQ807x_SUPPORT)
  	nss_freq_sched_change(index, false);
  #endif
- 
